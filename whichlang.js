@@ -1,5 +1,7 @@
 
-const frequencies =
+
+
+    const frequencies =
     {
         "a": {
         "English": 8.167,
@@ -866,5 +868,184 @@ const frequencies =
         "Hungarian": 0
         },
     } ;
+    const template =
+    {
+        "a": {
+        "f" : 0
+        },
+        "b": {
+        "f" : 0
+        },
+        "c": {
+        "f" : 0
+        },
+        "d": {
+            "f" : 0
+        },
+        "e": {
+            "f" : 0
+        },
+        "f": {
+            "f" : 0
+        },
+        "g": {
+            "f" : 0
+        },
+        "h": {
+            "f" : 0
+        },
+        "i": {
+            "f" : 0
+        },
+        "j": {
+            "f" : 0
+        },
+        "k": {
+            "f" : 0
+        },
+        "l": {
+            "f" : 0
+        },
+        "m": {
+            "f" : 0
+        },
+        "n": {
+            "f" : 0
+        },
+        "o": {
+            "f" : 0
+        },
+        "p": {
+            "f" : 0
+        },
+        "q": {
+            "f" : 0
+        },
+        "r": {
+            "f" : 0
+        },
+        "s": {
+            "f" : 0
+        },
+        "t": {
+            "f" : 0
+        },
+        "u": {
+            "f" : 0
+        },
+        "v": {
+            "f" : 0
+        },
+        "w": {
+            "f" : 0
+        },
+        "x": {
+            "f" : 0
+        },
+        "y": {
+            "f" : 0
+        },
+        "z": {
+            "f" : 0
+        },
+        "à": {
+            "f" : 0
+        },
+        "â": {
+            "f" : 0
+        },
+        "á": {
+            "f" : 0
+        },
+        "å": {
+            "f" : 0
+        },
+        "ä": {
+            "f" : 0
+        },
+        "ã": {
+            "f" : 0
+        },
+        "ą": {
+            "f" : 0
+        },
+        "æ": {
+            "f" : 0
+        },
+        "œ": {
+            "f" : 0
+        },
+        "ç": {
+            "f" : 0
+        },
+        "ĉ": {
+            "f" : 0
+        },
+        "ć": {
+            "f" : 0
+        },
+        "č": {
+            "f" : 0
+        },
+        "ď": {
+            "f" : 0
+        },
+        "ð": {
+            "f" : 0
+        },
+        "è": {
+            "f" : 0
+        },
+        "é": {
+            "f" : 0
+        },
+        "ê": {
+            "f" : 0
+        },
+        "ë": {
+            "f" : 0
+        },
+        "ę": {
+            "f" : 0
+        },
+        "ě": {
+            "f" : 0
+        },
+        "ĝ": {
+            "f" : 0
+        },
+    } ;
 
-console.log()
+    function frequencyOf() {
+        let phrase = "abcdef"
+        const fa = template;
+        phrase.replace('characterToReplace', '');
+        for (var key in fa){
+            if(phrase.includes(""+key))
+                fa[key] = 2;
+        }
+
+    }
+    function bestfit(){
+
+    }
+
+    let phrase = "fewer hours of sleep on an average school night"
+        const fa = template;
+        for (let i = 0; i < phrase.length; i++){
+            phrase = phrase.replace(' ', '');
+        }
+        for (var key in fa){
+            let counter = 0;
+            for(let i = 0; i < phrase.length; i++){
+                if(phrase[i] == key){
+                    counter++;
+                }
+            }
+            if(phrase.includes(""+key))
+                eval(fa[key]).f = (counter / phrase.length) * 100;
+        }
+
+
+console.log(fa);
+

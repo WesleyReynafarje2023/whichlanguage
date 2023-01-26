@@ -1014,27 +1014,18 @@
         "ĝ": {
             "f" : 0
         },
+    
     } ;
 
-    function frequencyOf() {
-        let phrase = "abcdef"
-        const fa = template;
-        phrase.replace('characterToReplace', '');
-        for (var key in fa){
-            if(phrase.includes(""+key))
-                fa[key] = 2;
-        }
-
-    }
-    function bestfit(){
-
-    }
-
-    let phrase = "fewer hours of sleep on an average school night"
+    function frequencyOf(phrase) {
         const fa = template;
         for (let i = 0; i < phrase.length; i++){
             phrase = phrase.replace(' ', '');
+            phrase = phrase.replace('.', '');
+            phrase = phrase.replace(',', '');
         }
+        phrase = phrase.replace(/[A-Z][a-z]*/g, str => str.toLowerCase())
+        console.log(phrase);
         for (var key in fa){
             let counter = 0;
             for(let i = 0; i < phrase.length; i++){
@@ -1045,7 +1036,49 @@
             if(phrase.includes(""+key))
                 eval(fa[key]).f = (counter / phrase.length) * 100;
         }
+        return fa;
 
+    }
+    function bestfit(fa){
+        const comp = {
+        "English": 0,
+        "French": 0,
+        "German": 0,
+        "Spanish": 0,
+        "Portuguese": 0,
+        "Esperanto": 0,
+        "Italian": 0,
+        "Turkish": 0,
+        "Swedish": 0,
+        "Polish": 0,
+        "Dutch": 0,
+        "Danish": 0,
+        "Icelandic": 0,
+        "Finnish": 0,
+        "Czech": 0,
+        "Hungarian": 0
+        };
 
-console.log(fa);
+        for(var key in comp){
+            let summation = 0;
+            for(sey in fa){
+                summation += (((fa.sey - frequencies.sey.key) ** 2)/frequencies.sey.key);
+            }
+            comp.key = summation;
+        }
+        max = 0;
+        let h = "";
+        for (h in comp){
+            if (h > max){
+                best = h;
+            }
+        }
+        return best;
+    }
+
+    let fre = frequencyOf("Fewer hours of sleep on an average school night")
+    let se = bestfit(fre)
+
+console.log(fre);
+console.log(se)
 

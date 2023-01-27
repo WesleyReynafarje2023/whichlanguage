@@ -1023,6 +1023,7 @@
             phrase = phrase.replace(' ', '');
             phrase = phrase.replace('.', '');
             phrase = phrase.replace(',', '');
+            phrase = phrase.replace('-', '');
         }
         phrase = phrase.replace(/[A-Z][a-z]*/g, str => str.toLowerCase())
         console.log(phrase);
@@ -1039,6 +1040,16 @@
         return fa;
 
     }
+
+    function propName(prop, value){
+        for(var i in prop) {
+            if (prop[i] == value){
+                 return i;
+            }
+        }
+        return false;
+     }
+
     function bestfit(fa){
         const comp = {
         "English": 0,
@@ -1059,24 +1070,50 @@
         "Hungarian": 0
         };
 
+
+
         for(var key in comp){
             let summation = 0;
-            for(sey in fa){
-                summation += (((fa.sey - frequencies.sey.key) ** 2)/frequencies.sey.key);
+            for(var sey in fa){
+                
+                //console.log((((fa[sey].f - frequencies[sey][key]) ** 2)/frequencies[sey][key]));
+                
+                
+              
+                if(frequencies[sey][key] == 0){
+                    summation += (((fa[sey].f - frequencies[sey][key]) ** 2)/0.00001);
+                }
+                else{
+                    summation += (((fa[sey].f - frequencies[sey][key]) ** 2)/frequencies[sey][key]);
+                }
+
+
             }
-            comp.key = summation;
+            
+            comp[key] = summation;
         }
-        max = 0;
-        let h = "";
-        for (h in comp){
-            if (h > max){
+
+        console.log(comp);
+
+        min = 1000000;
+        
+        best = "";
+
+        for (var h in comp){
+            console.log(comp[h]);
+            if (comp[h] < min){
                 best = h;
+                min = comp[h];
             }
+            
+
         }
+
+
         return best;
     }
 
-    let fre = frequencyOf("Fewer hours of sleep on an average school night")
+    let fre = frequencyOf("Estaba muerto. No había salida posible. El hombre de las flores se acercaba. Podía mancharlo.")
     let se = bestfit(fre)
 
 console.log(fre);
